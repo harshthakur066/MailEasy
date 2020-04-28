@@ -9,13 +9,17 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Harsh Thakur",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^5.2.0",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
+    "http-proxy-middleware": "^1.0.3",
     "mongoose": "^5.9.10",
     "nodemon": "^2.0.3",
     "passport": "^0.4.1",
