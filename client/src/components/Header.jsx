@@ -1,22 +1,44 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
+import { Context as AuthContext } from "../context/authContext";
+import { Link } from "react-router-dom";
 
-export class Header extends Component {
-  render() {
-    return (
-      <nav>
-        <div className="nav-wrapper" style={{ backgroundColor: "#383a3d" }}>
-          <a href="/" className="brand-logo" style={{ paddingLeft: 10 }}>
-            Emalisy
-          </a>
-          <ul className="right hide-on-med-and-down">
-            <li>
-              <a href="/auth/google">Signin With Google</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    );
-  }
-}
+const Header = () => {
+  const { state } = useContext(AuthContext);
+  // console.log("state", state);
+
+  const renderContent = () => {
+    switch (state) {
+      case null:
+        return;
+      case false:
+        return (
+          <li>
+            <a href="/auth/google">Login With Google</a>
+          </li>
+        );
+      default:
+        return (
+          <li>
+            <a href="/api/logout">Logout</a>
+          </li>
+        );
+    }
+  };
+
+  return (
+    <nav>
+      <div className="nav-wrapper" style={{ backgroundColor: "#383a3d" }}>
+        <Link
+          to={state ? "/surveys" : "/"}
+          className="brand-logo"
+          style={{ paddingLeft: 10 }}
+        >
+          MailEasy
+        </Link>
+        <ul className="right hide-on-med-and-down">{renderContent()}</ul>
+      </div>
+    </nav>
+  );
+};
 
 export default Header;
