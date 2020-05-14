@@ -21,7 +21,7 @@ const Payment = () => {
         currency="INR"
         stripeKey={publishableKey}
       >
-        <button className=" waves-light btn-small green darken-3">
+        <button className="waves-effect waves-light btn  blue darken-3">
           Add Credits
         </button>
       </StripeCheckout>
