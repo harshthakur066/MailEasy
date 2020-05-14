@@ -23,6 +23,9 @@ const Header = () => {
             <Payment />
           </li>,
           <li key={2}>
+            <a>Credits: {state.credits} </a>
+          </li>,
+          <li key={3}>
             <a href="/api/logout">Logout</a>
           </li>,
         ];
