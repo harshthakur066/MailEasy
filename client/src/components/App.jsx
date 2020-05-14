@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
-import { Context as AuthContext } from "../context/authContext";
+import { Context as UserContext } from "../context/userContext";
 
 import Header from "./Header";
 import Dashboard from "./Dashboard";
 import Landing from "./Landing";
 
 const App = () => {
-  const { fetchUser } = useContext(AuthContext);
+  const { fetchUser } = useContext(UserContext);
 
   useEffect(() => {
     fetchUser();

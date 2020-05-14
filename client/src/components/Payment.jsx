@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import StripeCheckout from "react-stripe-checkout";
-import { Context as TokenContext } from "../context/tokenContext";
+import { Context as UserContext } from "../context/userContext";
 
 const Payment = () => {
   const publishableKey = process.env.REACT_APP_STRIPE_KEY;
-  const { handleToken } = useContext(TokenContext);
+  const { handleToken } = useContext(UserContext);
 
   const onToken = (token) => {
     handleToken(token);

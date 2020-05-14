@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Context as AuthContext } from "../context/authContext";
+import { Context as AuthContext } from "../context/userContext";
 import { Link } from "react-router-dom";
 import Payment from "./Payment";
 
@@ -22,8 +22,8 @@ const Header = () => {
           <li key={1}>
             <Payment />
           </li>,
-          <li key={2}>
-            <a>Credits: {state.credits} </a>
+          <li key={2} style={{ margin: "0 10px" }}>
+            Credits: {state.credits}
           </li>,
           <li key={3}>
             <a href="/api/logout">Logout</a>

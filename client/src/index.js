@@ -3,16 +3,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
-import { Provider as AuthProvider } from "./context/authContext";
-import { Provider as TokenProvider } from "./context/tokenContext";
+import { Provider as UserProvider } from "./context/userContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <TokenProvider>
-        <App />
-      </TokenProvider>
-    </AuthProvider>
+    <UserProvider>
+      <App />
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
