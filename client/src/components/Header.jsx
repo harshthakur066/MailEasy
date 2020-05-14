@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context as AuthContext } from "../context/authContext";
 import { Link } from "react-router-dom";
+import Payment from "./Payment";
 
 const Header = () => {
   const { state } = useContext(AuthContext);
@@ -17,11 +18,14 @@ const Header = () => {
           </li>
         );
       default:
-        return (
-          <li>
+        return [
+          <li key={1}>
+            <Payment />
+          </li>,
+          <li key={2}>
             <a href="/api/logout">Logout</a>
-          </li>
-        );
+          </li>,
+        ];
     }
   };
 
