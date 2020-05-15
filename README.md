@@ -15,3 +15,5 @@ A MERN Project, in which a business man or startup owner as a user can authentic
   ## Note:
   
   Get the api keys for [google OAuth](https://console.developers.google.com/), [MongoDb](https://www.mongodb.com/), [Stripe](https://stripe.com/) and [SendGrid](https://sendgrid.com/) first listed in config/prod.js as dev.js for back-end and stripePublishableKey in client/.env file for front-end.
+
+For google OAuth api key you can get the documentation [here](https://support.google.com/googleapi/answer/6158849?hl=en). 
