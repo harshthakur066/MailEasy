@@ -5,6 +5,9 @@ import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider as UserProvider } from "./context/userContext";
 
+import axios from "axios";
+window.axios = axios;
+
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
