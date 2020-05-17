@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Mailer = require("../services/Mailer");
 const requireLogin = require("../middlewares/requireLogin");
 const requireCredits = require("../middlewares/requireCredts");
 const surveyTemplate = require("../services/emailTemplates/surveyTemplate");
@@ -33,7 +34,7 @@ module.exports = (app) => {
     });
 
     try {
-      // await mailer.send();
+      Mailer(survey, surveyTemplate(survey));
       await survey.save();
       req.user.credits -= 1;
       const user = await req.user.save();
