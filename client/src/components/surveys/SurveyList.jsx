@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Context as SurveyContext } from "../../context/surveyContext";
 
 const SurveyList = () => {
-  const { state, fetchSurveys } = useContext(SurveyContext);
+  const { state, fetchSurveys, deleteSurvey } = useContext(SurveyContext);
 
   useEffect(() => {
     fetchSurveys();
@@ -10,18 +10,16 @@ const SurveyList = () => {
   }, []);
 
   const renderContent = () => {
-    switch (state) {
-      case null:
+    switch (state.surveys.length) {
+      case 0:
         return <h2>Loading...</h2>;
-      case false:
-        return <h2>No data to show</h2>;
       default:
         return renderSurveys().reverse();
     }
   };
 
   const renderSurveys = () => {
-    return state.map((survey) => {
+    return state.surveys.map((survey) => {
       return (
         <div className="card darken-1" key={survey._id}>
           <div className="card-content">
@@ -38,7 +36,19 @@ const SurveyList = () => {
             >
               Yes: {survey.yes}
             </button>
-            <button className="btn-small">No: {survey.no}</button>
+            <button style={{ marginRight: "10px" }} className="btn-small">
+              No: {survey.no}
+            </button>
+            <button
+              onClick={(id) => {
+                deleteSurvey(survey._id);
+              }}
+              className="btn-small red darken-2"
+            >
+              <i style={{ padding: "0 6px" }} className="material-icons">
+                delete
+              </i>
+            </button>
           </div>
         </div>
       );
