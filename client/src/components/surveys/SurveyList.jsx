@@ -11,8 +11,10 @@ const SurveyList = () => {
 
   const renderContent = () => {
     switch (state.surveys.length) {
+      //   case 0:
+      //     return <h2>Loading...</h2>;
       case 0:
-        return <h2>Loading...</h2>;
+        return <h2>There are no surveys</h2>;
       default:
         return renderSurveys().reverse();
     }
@@ -57,8 +59,9 @@ const SurveyList = () => {
 
   console.log(state);
   return (
-    // eslint-disable-next-line
-    <div>{renderContent()}</div>
+    <div>
+      {state.loading ? <h2>Loading...</h2> : <div>{renderContent()}</div>}
+    </div>
   );
 };
 

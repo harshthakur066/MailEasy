@@ -4,7 +4,7 @@ import axios from "axios";
 const surveyReducer = (state, action) => {
   switch (action.type) {
     case "fetch_surveys":
-      return { ...state, surveys: action.payload || false };
+      return { ...state, loading: false, surveys: action.payload };
     case "delete_survey":
       return {
         ...state,
@@ -32,5 +32,5 @@ const deleteSurvey = (dispatch) => async (id) => {
 export const { Provider, Context } = createDataContext(
   surveyReducer,
   { fetchSurveys, deleteSurvey },
-  { surveys: [] }
+  { surveys: [], loading: true }
 );
