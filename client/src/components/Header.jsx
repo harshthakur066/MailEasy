@@ -35,11 +35,7 @@ const Header = () => {
   return (
     <nav>
       <div className="nav-wrapper light-blue darken-4 ">
-        <Link
-          to={state ? "/surveys" : "/"}
-          className="brand-logo"
-          style={{ paddingLeft: 10 }}
-        >
+        <Link to="/" className="brand-logo" style={{ paddingLeft: 10 }}>
           MailEasy
         </Link>
         <ul className="right hide-on-med-and-down">{renderContent()}</ul>
