@@ -15,8 +15,8 @@ const Payment = () => {
     <div>
       <StripeCheckout
         name="MailEasy"
-        description="5 Rs. for 5 credits"
-        amount={500}
+        description="50 Rs. for 50 credits"
+        amount={50 * 100}
         token={onToken}
         currency="INR"
         stripeKey={publishableKey}
