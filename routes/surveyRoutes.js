@@ -1,3 +1,6 @@
+const _ = require("lodash");
+const { Path } = require("path-parser");
+const { URl } = require("url");
 const mongoose = require("mongoose");
 const Mailer = require("../services/Mailer");
 const requireLogin = require("../middlewares/requireLogin");
@@ -13,6 +16,37 @@ module.exports = (app) => {
     });
 
     res.send(surveys);
+  });
+
+  app.post("/api/surveys/webhooks", (req, res) => {
+    const parse = new Path("/api/surveys/:surveyId/:choice");
+
+    _.chain(req.body)
+      .map(({ email, url }) => {
+        const match = parse.test(new URL(url).pathname);
+        if (match) {
+          return { email, surveyId: match.surveyId, choice: match.choice };
+        }
+      })
+      .compact()
+      .uniqBy("email", "surveyId")
+      .each(({ surveyId, email, choice }) => {
+        Survey.updateOne(
+          {
+            _id: surveyId,
+            recipients: {
+              $elemMatch: { email: email, responded: false },
+            },
+          },
+          {
+            $inc: { [choice]: 1 },
+            $set: { "recipients.$.responded": true },
+            lastResponded: new Date(),
+          }
+        ).exec();
+      })
+      .value();
+    res.send({});
   });
 
   app.get("/api/surveys/:surveyId/:choice", (req, res) => {
