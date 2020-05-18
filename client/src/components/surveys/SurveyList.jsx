@@ -16,12 +16,12 @@ const SurveyList = () => {
       case false:
         return <h2>No data to show</h2>;
       default:
-        return renderSurveys();
+        return renderSurveys().reverse();
     }
   };
 
   const renderSurveys = () => {
-    return state.reverse().map((survey) => {
+    return state.map((survey) => {
       return (
         <div className="card darken-1" key={survey._id}>
           <div className="card-content">
@@ -32,8 +32,13 @@ const SurveyList = () => {
             </p>
           </div>
           <div className="card-action">
-            <a>Yes: {survey.yes}</a>
-            <a>No: {survey.no}</a>
+            <button
+              className="btn-small light-blue darken-2"
+              style={{ marginRight: "5px" }}
+            >
+              Yes: {survey.yes}
+            </button>
+            <button className="btn-small">No: {survey.no}</button>
           </div>
         </div>
       );
@@ -41,7 +46,10 @@ const SurveyList = () => {
   };
 
   console.log(state);
-  return <div>{renderContent()}</div>;
+  return (
+    // eslint-disable-next-line
+    <div>{renderContent()}</div>
+  );
 };
 
 export default SurveyList;

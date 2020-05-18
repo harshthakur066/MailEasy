@@ -78,4 +78,15 @@ module.exports = (app) => {
       res.status(422).send(err);
     }
   });
+
+  app.delete("/api/surveys/:id", async (req, res) => {
+    Survey.findByIdAndRemove(req.params.id, (err, survey) => {
+      if (err) return res.status(500).send(err);
+      const response = {
+        message: "Todo successfully deleted",
+        id: survey._id,
+      };
+      return res.status(200).send(response);
+    });
+  });
 };
