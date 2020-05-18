@@ -4,7 +4,7 @@ import axios from "axios";
 const surveyReducer = (state, action) => {
   switch (action.type) {
     case "fetch_surveys":
-      return action.payload;
+      return action.payload || false;
     default:
       return state;
   }

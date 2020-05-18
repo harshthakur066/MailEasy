@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import { Context as UserContext } from "../context/userContext";
-import { Context as SurveyContext } from "../context/surveyContext";
 
 import Header from "./Header";
 import Dashboard from "./Dashboard";
@@ -11,15 +10,9 @@ import NewSurveys from "./surveys/NewSurveys";
 
 const App = () => {
   const { fetchUser } = useContext(UserContext);
-  const { fetchSurveys } = useContext(SurveyContext);
 
   useEffect(() => {
     fetchUser();
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    fetchSurveys();
     // eslint-disable-next-line
   }, []);
 

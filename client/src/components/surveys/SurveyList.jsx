@@ -1,8 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context as SurveyContext } from "../../context/surveyContext";
 
 const SurveyList = () => {
-  const { state } = useContext(SurveyContext);
+  const { state, fetchSurveys } = useContext(SurveyContext);
+
+  useEffect(() => {
+    fetchSurveys();
+    // eslint-disable-next-line
+  }, []);
+
+  const renderContent = () => {
+    switch (state) {
+      case null:
+        return <h2>Loading...</h2>;
+      case false:
+        return <h2>No data to show</h2>;
+      default:
+        return renderSurveys();
+    }
+  };
 
   const renderSurveys = () => {
     return state.reverse().map((survey) => {
@@ -25,7 +41,7 @@ const SurveyList = () => {
   };
 
   console.log(state);
-  return <div>{renderSurveys()}</div>;
+  return <div>{renderContent()}</div>;
 };
 
 export default SurveyList;
