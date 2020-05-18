@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider as UserProvider } from "./context/userContext";
+import { Provider as SurveyProvider } from "./context/surveyContext";
 
 import axios from "axios";
 window.axios = axios;
@@ -11,7 +12,9 @@ window.axios = axios;
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
-      <App />
+      <SurveyProvider>
+        <App />
+      </SurveyProvider>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById("root")

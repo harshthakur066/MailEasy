@@ -1,6 +1,6 @@
 const _ = require("lodash");
 const { Path } = require("path-parser");
-const { URl } = require("url");
+const { URL } = require("url");
 const mongoose = require("mongoose");
 const Mailer = require("../services/Mailer");
 const requireLogin = require("../middlewares/requireLogin");
